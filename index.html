@@ -8,8 +8,15 @@
     <div id="nav-bar" class="nav-bar"></div>
     <div id="app">
       <div class="product">
-        <h1>{{ product }}</h1>
-        <h2>{{ description }}</h2>
+        <div class="product-image">
+          <a :href="link" target="_blank">
+            <img :src="image" />
+          </a>
+        </div>
+        <div class="product-info">
+          <h1>{{ product }}</h1>
+          <h3>{{ description }}</h3>
+        </div>
       </div>
     </div>
     <script src="https://unpkg.com/vue"></script>
@@ -18,7 +25,11 @@
         el: '#app',
         data: {
           product: 'Socks',
-          description: 'Colorful, with a definite personality',
+          description:
+            'Colorful, with a definite personality. Will make you smarter when you wear them.',
+          image: './images/vmSocks-green-onWhite.jpg',
+          link:
+            'https://www.vuemastery.com/courses/intro-to-vue-js/attribute-binding',
         },
       });
     </script>
