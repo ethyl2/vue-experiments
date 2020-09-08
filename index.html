@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sock Store</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+  </head>
+  <body>
+    <div id="nav-bar" class="nav-bar"></div>
+    <div id="app">
+      <div class="product">
+        <h1>{{ product }}</h1>
+        <h2>{{ description }}</h2>
+      </div>
+    </div>
+    <script src="https://unpkg.com/vue"></script>
+    <script>
+      var app = new Vue({
+        el: '#app',
+        data: {
+          product: 'Socks',
+          description: 'Colorful, with a definite personality',
+        },
+      });
+    </script>
+  </body>
+</html>
