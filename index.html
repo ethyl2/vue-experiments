@@ -16,6 +16,13 @@
         <div class="product-info">
           <h1>{{ product }}</h1>
           <h3>{{ description }}</h3>
+          <p v-if="inventory > 10">In Stock</p>
+          <p v-else-if="inventory <= 10 && inventory > 0">Almost Sold Out!</p>
+          <p v-if="onSale" style="font-style: italic">On Sale!</p>
+          <p v-else>Out of Stock</p>
+          <p v-show="favorite">
+            <span role="img" aria-label="Green Heart">💚</span>
+          </p>
         </div>
       </div>
     </div>
@@ -30,6 +37,9 @@
           image: './images/vmSocks-green-onWhite.jpg',
           link:
             'https://www.vuemastery.com/courses/intro-to-vue-js/attribute-binding',
+          inventory: 100,
+          favorite: true,
+          onSale: true,
         },
       });
     </script>
