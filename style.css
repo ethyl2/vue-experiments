@@ -33,10 +33,17 @@ img {
   width: 50%;
 }
 
+.stock {
+  text-decoration: line-through;
+}
+
 .color-box {
   width: 40px;
   height: 40px;
   margin-top: 5px;
+  color: white;
+  padding: 0.2em;
+  text-align: center;
 }
 
 .cart {
@@ -48,6 +55,7 @@ img {
 
 button {
   margin-top: 30px;
+  margin-left: 0.5em;
   border: none;
   background-color: #1e95ea;
   color: white;
@@ -97,4 +105,10 @@ textarea {
 .activeTab {
   color: #16c0b0;
   text-decoration: underline;
+}
+
+@media (max-width: 600px) {
+  button {
+    font-size: 0.6em;
+  }
 }
