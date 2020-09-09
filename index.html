@@ -23,6 +23,31 @@
           <p v-show="favorite">
             <span role="img" aria-label="Green Heart">💚</span>
           </p>
+
+          <ul>
+            <li v-for="detail in details" :key="detail">{{ detail }}</li>
+          </ul>
+
+          <h3>Available Colors:</h3>
+          <div v-for="variant in variants" :key="variant.variantId">
+            <p @mouseover="updateProduct(variant.variantImage)">
+              {{ variant.variantColor }}
+            </p>
+          </div>
+
+          <h3>Available Sizes:</h3>
+          <ul>
+            <li v-for="size in sizes" :key="size">{{ size }}</li>
+          </ul>
+
+          <div class="cart-buttons">
+            <button v-on:click="addToCart">Add to Cart</button>
+            <button @click="decrementCart">Remove from Cart</button>
+          </div>
+
+          <div class="cart">
+            <p>Cart({{ cart }})</p>
+          </div>
         </div>
       </div>
     </div>
@@ -40,6 +65,34 @@
           inventory: 100,
           favorite: true,
           onSale: true,
+          details: ['80% cotton', '20% polyester', 'Gender-neutral'],
+          variants: [
+            {
+              variantId: 2234,
+              variantColor: 'green',
+              variantImage: './images/vmSocks-green-onWhite.jpg',
+            },
+            {
+              variantId: 2235,
+              variantColor: 'blue',
+              variantImage: './images/vmSocks-blue-onWhite.jpg',
+            },
+          ],
+          sizes: ['XS', 'S', 'M', 'L', 'XL'],
+          cart: 0,
+        },
+        methods: {
+          addToCart: function () {
+            this.cart += 1;
+          },
+          updateProduct(variantImage) {
+            this.image = variantImage;
+          },
+          decrementCart() {
+            if (this.cart > 0) {
+              this.cart -= 1;
+            }
+          },
         },
       });
     </script>
