@@ -33,8 +33,13 @@ img {
   width: 50%;
 }
 
-.stock {
+.no-stock {
   text-decoration: line-through;
+}
+
+.sale-message {
+  color: #21864d;
+  font-weight: bold;
 }
 
 .color-box {
@@ -44,6 +49,10 @@ img {
   color: white;
   padding: 0.2em;
   text-align: center;
+}
+
+.variant-color {
+  cursor: pointer;
 }
 
 .cart {
