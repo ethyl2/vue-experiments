@@ -111,6 +111,24 @@ textarea {
   height: 60px;
 }
 
+form .radio-selection {
+  display: flex;
+  flex-flow: flex-start;
+  align-items: center;
+}
+
+form .radio-selection input {
+  width: 2em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+form .radio-selection label {
+  margin: 0;
+  padding-bottom: 1em;
+}
+
 .tab {
   margin-left: 20px;
   cursor: pointer;

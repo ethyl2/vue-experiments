@@ -26,14 +26,16 @@ Vue.component('product-review', {
         <input id="name" v-model="name" placeholder="name">
     </p>
     
-    <p>
-        Would you recommend this product?
-        <label for="yes">Yes</label>
+    <p>Would you recommend this product?</p>
+    <div class="radio-selection">
         <input type="radio" id="yes" value="yes" name="recommend" v-model="recommend">
-
-        <label for="no">No</label>
+        <label for="yes">Yes</label>
+    </div>
+    <div class="radio-selection">
         <input type="radio" id="no" value="no" name="recommend" v-model="recommend"  >
-    </p>
+        <label for="no">No</label>
+    </div>
+    
     <p>
         <label for="review">Review:</label>      
         <textarea id="review" v-model="review" placeholder="what do you think?"></textarea>
