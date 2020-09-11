@@ -92,6 +92,49 @@ Vue.component('product-review', {
   },
 });
 
+Vue.component('product-tabs', {
+  props: {
+    reviews: {
+      type: Array,
+      required: true,
+    },
+  },
+  template: `
+          <div>  
+            <span class="tab"
+                :class="{ activeTab: selectedTab === tab}" 
+                v-for="(tab, index) in tabs" 
+                :key="index"
+                @click="selectedTab = tab"> 
+                {{ tab }}
+            </span>
+
+            <product-review v-show="selectedTab === 'Add a Review'" @review-submitted="addReview"></product-review>
+
+            <div v-show="selectedTab === 'Reviews'">
+                <h2>Reviews</h2>
+                <p v-if="!reviews.length">No reviews yet.</p>
+        
+                <ul class="reviews-box">
+                    <li v-for="(review, index) in reviews" class='review-box' :key="index">
+                        <h3>{{ review.name }}</h3>
+                        <p>Would recommend? {{ review.recommend }}</p>
+                        <p>Rating: {{ review.rating }}</p>
+                        <p>{{ review.review}}</p>
+
+                    </li>
+                </ul>
+            </div>
+          </div>
+      `,
+  data() {
+    return {
+      tabs: ['Reviews', 'Add a Review'],
+      selectedTab: 'Reviews',
+    };
+  },
+});
+
 Vue.component('product', {
   props: {
     premium: {
@@ -159,22 +202,8 @@ Vue.component('product', {
       </div>
     </div>
 
-    <product-review @review-submitted="addReview"></product-review>
-
-    <div>
-        <h2>Reviews</h2>
-        <p v-if="!reviews.length">No reviews yet.</p>
-        
-        <ul class="reviews-box">
-            <li v-for="review in reviews" class='review-box'>
-                <h3>{{ review.name }}</h3>
-                <p>Would recommend? {{ review.recommend }}</p>
-                <p>Rating: {{ review.rating }}</p>
-                <p>{{ review.review}}</p>
-
-            </li>
-        </ul>
-    </div>
+    <product-tabs :reviews="reviews"></product-tabs>
+    
   </div>`,
   data() {
     return {
