@@ -14,7 +14,7 @@ Vue.component('product-details', {
 Vue.component('product-review', {
   template: `
   <form class="review-form" @submit.prevent="onSubmit">
-
+    <legend>Add Your Review</legend>
   <p v-if="errors.length">
     <b>Please correct the following error(s):</b>
         <ul>
@@ -150,10 +150,10 @@ Vue.component('product', {
         <h2>Reviews</h2>
         <p v-if="!reviews.length">No reviews yet.</p>
         
-        <ul>
-            <li v-for="review in reviews">
-                <p>{{ review.name }}</p>
-                <p>{{ review.rating }}</p>
+        <ul class="reviews-box">
+            <li v-for="review in reviews" class='review-box'>
+                <h3>{{ review.name }}</h3>
+                <p>Rating: {{ review.rating }}</p>
                 <p>{{ review.review}}</p>
 
             </li>
