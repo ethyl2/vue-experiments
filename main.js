@@ -15,7 +15,6 @@ Vue.component('product', {
   props: {
     premium: {
       type: Boolean,
-      required: true,
     },
   },
   template: `<div class="product">
@@ -77,10 +76,6 @@ Vue.component('product', {
           Remove from Cart
         </button>
       </div>
-
-      <div class="cart">
-        <p>Cart({{ cart }})</p>
-      </div>
     </div>
   </div>`,
   data() {
@@ -113,18 +108,17 @@ Vue.component('product', {
         },
       ],
       sizes: ['XS', 'S', 'M', 'L', 'XL'],
-      cart: 0,
     };
   },
   methods: {
     addToCart: function () {
-      this.cart += 1;
+      this.$emit('add-to-cart');
     },
     updateProduct(index) {
       this.selectedVariant = index;
     },
     decrementCart() {
-      this.cart -= 1;
+      this.$emit('remove-from-cart');
     },
   },
   computed: {
@@ -157,5 +151,14 @@ var app = new Vue({
   el: '#app',
   data: {
     premium: true,
+    cart: 0,
+  },
+  methods: {
+    updateCart() {
+      this.cart += 1;
+    },
+    removeFromCart() {
+      this.cart -= 1;
+    },
   },
 });
