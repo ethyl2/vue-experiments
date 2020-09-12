@@ -1,9 +1,10 @@
+var eventBus = new Vue();
+
 Vue.component('product-details', {
   props: {
     details: {
       type: Array,
       required: true,
-      default: ['80% cotton', '20% polyester', 'Gender-neutral'],
     },
   },
   template: `<ul>
@@ -76,7 +77,7 @@ Vue.component('product-review', {
           rating: this.rating,
           recommend: this.recommend,
         };
-        this.$emit('review-submitted', productReview);
+        eventBus.$emit('review-submitted', productReview);
         this.name = null;
         this.review = null;
         this.rating = null;
@@ -109,7 +110,7 @@ Vue.component('product-tabs', {
                 {{ tab }}
             </span>
 
-            <product-review v-show="selectedTab === 'Add a Review'" @review-submitted="addReview"></product-review>
+            <product-review v-show="selectedTab === 'Add a Review'"></product-review>
 
             <div v-show="selectedTab === 'Reviews'">
                 <h2>Reviews</h2>
@@ -167,22 +168,28 @@ Vue.component('product', {
 
       <product-details :details="details"></product-details>
 
-      <h3>Available Colors:</h3>
-      <div
-        v-for="(variant, index) in variants"
-        :key="variant.variantId"
-        class="color-box"
-        :style="{ backgroundColor: variant.variantHex}"
-      >
-        <p @mouseover="updateProduct(index)" class="variant-color">
-          {{ variant.variantColor }}
-        </p>
-      </div>
+      <div class='options'>
+        <div>
+            <h3>Available Colors:</h3>
+            <div
+                v-for="(variant, index) in variants"
+                :key="variant.variantId"
+                class="color-box"
+                :style="{ backgroundColor: variant.variantHex}"
+            >
+                <p @mouseover="updateProduct(index)" class="variant-color">
+                {{ variant.variantColor }}
+                </p>
+            </div>
+        </div>
 
-      <h3>Available Sizes:</h3>
-      <ul>
-        <li v-for="size in sizes" :key="size">{{ size }}</li>
-      </ul>
+        <div>
+            <h3>Available Sizes:</h3>
+            <ul>
+                <li v-for="size in sizes" :key="size">{{ size }}</li>
+            </ul>
+        </div>
+    </div>
 
       <div class="cart-buttons">
         <button
@@ -216,7 +223,7 @@ Vue.component('product', {
       inventory: 0,
       favorite: true,
       onSale: true,
-
+      details: ['80% cotton', '20% polyester', 'Gender-neutral'],
       selectedVariant: 0,
       variants: [
         {
@@ -251,9 +258,6 @@ Vue.component('product', {
         this.variants[this.selectedVariant].variantId
       );
     },
-    addReview(review) {
-      this.reviews.push(review);
-    },
   },
   computed: {
     title() {
@@ -278,6 +282,11 @@ Vue.component('product', {
       }
       return 2.99;
     },
+  },
+  mounted() {
+    eventBus.$on('review-submitted', (review) => {
+      this.reviews.push(review);
+    });
   },
 });
 
