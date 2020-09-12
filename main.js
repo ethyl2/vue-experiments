@@ -93,6 +93,45 @@ Vue.component('product-review', {
   },
 });
 
+Vue.component('top-tabs', {
+  props: {
+    details: {
+      type: Array,
+      required: true,
+    },
+    premium: {
+      type: Boolean,
+    },
+    shipping: {
+      type: String || Number,
+    },
+  },
+  template: `
+    <div class='top-tabs'>
+        <span class="tab"
+            :class="{ activeTab: selectedTab === tab}" 
+            v-for="(tab, index) in tabs" 
+            :key="index"
+            @click="selectedTab = tab"> 
+            {{ tab }}
+        </span> 
+        
+        <product-details v-show="selectedTab === 'Details'" :details="details"></product-details>
+        
+        <div v-show="selectedTab === 'Shipping'">
+            <p><span class='key'>Shipping:</span> {{ shipping }} </p>
+            <p v-if="premium" class="premium-message">Thank you for being a premium customer. Enjoy your free shipping!</p>
+        </div>
+    </div> 
+    `,
+  data() {
+    return {
+      tabs: ['Details', 'Shipping'],
+      selectedTab: 'Details',
+    };
+  },
+});
+
 Vue.component('product-tabs', {
   props: {
     reviews: {
@@ -118,9 +157,14 @@ Vue.component('product-tabs', {
         
                 <ul class="reviews-box">
                     <li v-for="(review, index) in reviews" class='review-box' :key="index">
-                        <h3>{{ review.name }}</h3>
-                        <p>Would recommend? {{ review.recommend }}</p>
-                        <p>Rating: {{ review.rating }}</p>
+                        <div class="user">
+                            <div class="img-container">
+                                <img src="images/smallHead.png" alt="avator" />
+                            </div>
+                            <h3>{{ review.name }}</h3>
+                        </div>
+                        <p><span class='key'>Would recommend?</span> {{ review.recommend }}</p>
+                        <p><span class='key'>Rating:</span> {{ review.rating }}</p>
                         <p>{{ review.review}}</p>
 
                     </li>
@@ -151,22 +195,20 @@ Vue.component('product', {
     <div class="product-info">
       <h1>{{ title }}</h1>
       <h3>{{ description }}</h3>
+      <p v-show="favorite">
+        <span role="img" aria-label="Green Heart">💚</span>
+      </p>
+      <p v-if="onSale" style="font-style: italic">On Sale!</p>
+      <p class="sale-message">{{ saleMessage }}</p>
 
       <p v-if="inStock" :class=" { outOfStock: inventory <= 0} ">
         In Stock
       </p>
       <p v-else>Out of Stock</p>
 
-      <p v-if="premium">Thank you for being a premium customer. Enjoy your free shipping!</p>
-      <p>Shipping: {{ shipping }} </p>
-      <p v-if="onSale" style="font-style: italic">On Sale!</p>
-      <p class="sale-message">{{ saleMessage }}</p>
+      <top-tabs :details="details" :premium="premium" :shipping="shipping"></top-tabs>
 
-      <p v-show="favorite">
-        <span role="img" aria-label="Green Heart">💚</span>
-      </p>
-
-      <product-details :details="details"></product-details>
+      
 
       <div class='options'>
         <div>

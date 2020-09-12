@@ -4,6 +4,10 @@ body {
   margin: 0px;
 }
 
+.key {
+  font-weight: bold;
+}
+
 .nav-bar {
   background: linear-gradient(-90deg, #84cf6a, #16c0b0);
   height: 60px;
@@ -40,6 +44,40 @@ img {
 .sale-message {
   color: #21864d;
   font-weight: bold;
+}
+
+.tab {
+  margin-left: 20px;
+  cursor: pointer;
+}
+
+.activeTab {
+  color: #16c0b0;
+  text-decoration: underline;
+}
+
+.top-tabs {
+  margin: 1em 0;
+  padding: 0;
+  min-height: 8em;
+}
+
+.top-tabs .tab {
+  margin-left: 0;
+  margin-right: 1em;
+}
+
+.top-tabs ul {
+  padding-left: 0;
+  list-style-position: inside;
+}
+
+.top-tabs p {
+  padding-top: 1em;
+}
+
+.top-tabs p.premium-message {
+  font-style: italic;
 }
 
 .options {
@@ -149,16 +187,6 @@ form .radio-selection label {
   padding-bottom: 1em;
 }
 
-.tab {
-  margin-left: 20px;
-  cursor: pointer;
-}
-
-.activeTab {
-  color: #16c0b0;
-  text-decoration: underline;
-}
-
 .reviews-box {
   display: flex;
   flex-flow: row wrap;
@@ -178,10 +206,38 @@ form .radio-selection label {
   margin: 0.5em;
 }
 
-.review-box h3,
-p {
+.review-box .user {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+}
+
+.review-box .user .img-container {
+  max-width: 3em;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 3em;
+}
+
+.review-box .user .img-container img {
+  max-width: 100%;
+  border: none;
+  box-shadow: none;
+}
+
+.review-box p {
   padding-bottom: 0.25em;
   margin: 0;
+}
+
+.review-box h3 {
+  color: #344760;
+  font-size: 1.5em;
 }
 
 @media (max-width: 600px) {
