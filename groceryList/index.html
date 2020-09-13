@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <link rel="stylesheet" href="index.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      <h1>Grocery List</h1>
+      <ol>
+        <grocery-item
+          v-for="item in groceryList"
+          v-bind:item="item"
+          v-bind:key="item.id"
+        >
+        </grocery-item>
+      </ol>
+    </div>
+    <script src="index.js"></script>
+  </body>
+</html>
