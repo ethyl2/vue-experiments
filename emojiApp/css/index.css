@@ -1,0 +1,42 @@
+/* resets */
+* {
+  color: inherit;
+}
+input {
+  font: inherit;
+  border: unset;
+  background: unset;
+}
+input:focus {
+  outline: unset;
+}
+
+:root {
+  font: 1rem/1.175 'BlinkMacSystemFont', -apple-system, 'Roboto', sans-seri;
+}
+
+#app {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  min-height: 100vh;
+  font-weight: 900;
+  font-size: 5rem;
+  color: hsl(0, 0%, 100%);
+  background: hsl(240, 100%, 67%);
+}
+
+input {
+  text-align: center;
+  border: 2px solid white;
+  margin: 0.5em;
+  border-radius: 3px;
+}
+
+img {
+  width: 8rem;
+  height: 8rem;
+  vertical-align: calc(-0.12109375em);
+}
