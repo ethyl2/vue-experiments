@@ -11,5 +11,14 @@ var app = new Vue({
       { id: 1, text: 'Cheese', amount: '2 blocks' },
       { id: 2, text: 'Fish Crackers', amount: '1 bag' },
     ],
+    nextId: 3,
+    newItem: {},
+  },
+  methods: {
+    onSubmit() {
+      this.groceryList.push({ ...this.newItem, id: this.nextId });
+      this.nextId++;
+      this.newItem = {};
+    },
   },
 });

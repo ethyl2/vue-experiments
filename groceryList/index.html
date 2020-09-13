@@ -1,19 +1,33 @@
 <html>
   <head>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Arimo&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="index.css" />
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
   </head>
   <body>
     <div id="app">
       <h1>Grocery List</h1>
-      <ol>
-        <grocery-item
-          v-for="item in groceryList"
-          v-bind:item="item"
-          v-bind:key="item.id"
-        >
-        </grocery-item>
-      </ol>
+      <form @submit.prevent="onSubmit">
+        <input v-model="newItem.text" placeholder="new item" />
+        <input v-model="newItem.amount" placeholder="amount" />
+        <input type="submit" value="Submit" />
+      </form>
+      <main>
+        <ol>
+          <grocery-item
+            v-for="item in groceryList"
+            v-bind:item="item"
+            v-bind:key="item.id"
+          >
+          </grocery-item>
+        </ol>
+        <div class="img-container">
+          <img src="images/groceries.jpg" alt="grocery store produce" />
+        </div>
+      </main>
     </div>
     <script src="index.js"></script>
   </body>
