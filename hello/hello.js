@@ -2,22 +2,27 @@ var app = new Vue({
   el: '#app',
   data: {
     message: 'Hello Vue!',
-    seen: false,
+    seen: true,
     todos: [
       { text: 'code' },
       { text: 'eat' },
       { text: 'sleep' },
       { text: 'drink water' },
     ],
-    note: '',
+    newTodo: '',
   },
   methods: {
     reverseMessage() {
       this.message = this.message.split('').reverse().join('');
+      this.todos.reverse();
+    },
+    onSubmit() {
+      this.todos.push({ text: this.newTodo });
+      this.newTodo = '';
     },
   },
 });
 
-app.message = 'Hello to everyone!';
-app.seen = true;
+app.message = "Hello everyone! Let's be productive today!";
+app.seen = false;
 app.todos.push({ text: 'brush teeth' });

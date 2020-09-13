@@ -6,14 +6,19 @@
   <body>
     <div id="app">
       {{ message }}
-      <button v-on:click="reverseMessage">Reverse Message</button>
+
       <span v-if="seen">Now you see me.</span>
       <h2>Things to do today:</h2>
       <ol>
         <li v-for="todo in todos">{{todo. text}}</li>
       </ol>
-      <input v-model="note" />
-      <p>{{ note }}</p>
+
+      <form @submit.prevent="onSubmit">
+        <input v-model="newTodo" />
+        <input type="submit" value="Submit" />
+      </form>
+      <p>{{ newTodo }}</p>
+      <button v-on:click="reverseMessage">Reverse</button>
     </div>
 
     <script src="hello.js"></script>
