@@ -37,6 +37,10 @@ img {
   width: 50%;
 }
 
+.favorite {
+  cursor: pointer;
+}
+
 .no-stock {
   text-decoration: line-through;
 }

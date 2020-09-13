@@ -195,9 +195,14 @@ Vue.component('product', {
     <div class="product-info">
       <h1>{{ title }}</h1>
       <h3>{{ description }}</h3>
-      <p v-show="favorite">
-        <span role="img" aria-label="Green Heart">💚</span>
+
+      <p v-if="favorite" class="favorite">
+        <span role="img" aria-label="Green Heart" @click="toggleFavorite">💚</span> 
       </p>
+      <p v-else="favorite" class="favorite">
+        <span role="img" aria-label="White Heart" @click="toggleFavorite">🤍</span>
+      </p>
+
       <p v-if="onSale" style="font-style: italic">On Sale!</p>
       <p class="sale-message">{{ saleMessage }}</p>
 
@@ -299,6 +304,9 @@ Vue.component('product', {
         'remove-from-cart',
         this.variants[this.selectedVariant].variantId
       );
+    },
+    toggleFavorite() {
+      this.favorite = !this.favorite;
     },
   },
   computed: {

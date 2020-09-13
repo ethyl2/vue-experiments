@@ -1,0 +1,21 @@
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="hello.css" />
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  </head>
+  <body>
+    <div id="app">
+      {{ message }}
+      <button v-on:click="reverseMessage">Reverse Message</button>
+      <span v-if="seen">Now you see me.</span>
+      <h2>Things to do today:</h2>
+      <ol>
+        <li v-for="todo in todos">{{todo. text}}</li>
+      </ol>
+      <input v-model="note" />
+      <p>{{ note }}</p>
+    </div>
+
+    <script src="hello.js"></script>
+  </body>
+</html>
