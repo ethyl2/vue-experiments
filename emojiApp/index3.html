@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link
+      rel="stylesheet"
+      href="https://cdn.rawgit.com/jgthms/minireset.css/master/minireset.css"
+    />
+    <link rel="stylesheet" href="css/debug.css" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Roboto:400,500,700,900"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
+    <link rel="stylesheet" href="./css/index.css" />
+  </head>
+  <body>
+    <div id="app">
+      <!-- Options for conditionally displaying items -->
+      <p v-if="wizard == harry" v-html="wizard + ' ' + hedwig"></p>
+      <p v-if="wizard == ron" v-html="wizard + ' ' + scabbers"></p>
+      <p v-if="wizard == hermione" v-html="wizard + ' ' + crookshanks"></p>
+
+      <p
+        v-html="wizard + ' ' + (
+					wizard == harry    ? hedwig      :
+					wizard == ron      ? scabbers    :
+					wizard == hermione ? crookshanks : ''
+                )"
+      ></p>
+
+      <!-- Options to display all-->
+      <template v-if="true">
+        <p v-html="harry    + ' ' + hedwig     "></p>
+        <p v-html="ron      + ' ' + scabbers   "></p>
+        <p v-html="hermione + ' ' + crookshanks"></p>
+      </template>
+
+      <p
+        v-for="wizard in wizards()"
+        v-html="wizard.name + ' ' + wizard.pet"
+      ></p>
+    </div>
+    <script src="index3.js"></script>
+  </body>
+</html>
