@@ -327,7 +327,6 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-family: Roboto, sans-serif;
   background-color: #ccdcdc;
-  background-image: url('coffee.jpg');
   background-repeat: no-repeat;
   background-position: 100% 100%;
 }
@@ -338,6 +337,10 @@ body {
   padding-top: 1.5rem;
   padding-bottom: 1.5rem;
   /* width: 620px */
+}
+
+main {
+  display: flex;
 }
 
 h1.title {
@@ -454,6 +457,10 @@ span#logo {
   border-color: rgba(37, 142, 149, 0.96);
 }
 
+.left-side {
+  width: 30%;
+}
+
 .plans {
   padding: 0 40px;
   margin-bottom: 40px;
@@ -473,6 +480,14 @@ span#logo {
   position: relative;
   -webkit-transition: all 0.3s ease;
   transition: all 0.3s ease;
+}
+
+.plan-description {
+  padding: 1em;
+  font-style: italic;
+  font-weight: bold;
+  text-align: center;
+  color: #2d3336;
 }
 
 .plans .plan,

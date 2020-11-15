@@ -1,5 +1,5 @@
-const planDetails = {
-    template: '#plan-template',
+const planOption = {
+    template: '#plan-option-template',
     props: {
         name: {
             type: String,
@@ -21,17 +21,42 @@ const planDetails = {
     }
 }
 
+const planDescription = {
+    template: `<p class="plan-description">{{ description }}</p>`,
+    props: {
+        description: {
+            type: String,
+            default: 'A collection of tasty teas'
+        }
+    }
+}
+
 // Example of registering a component locally
 
 const planPicker = {
     template: "#plan-picker-template",
     components: {
-        planDetails
+        planOption,
+        planDescription
     },
     data() {
         return {
-            plans: ['The Curious', 'The Fruity Fan', 'The Addict', 'The Spicy Selector', 'The Cozy Cuddler'],
+            // plans: ['The Curious', 'The Fruity Fan', 'The Addict', 'The Spicy Selector', 'The Cozy Cuddler'],
+            plans: [ { name: 'The Curious', description: 'Unusual teas from unique markets' }, 
+                    { name: 'The Fruity Fan', description: 'Variety of teas with distinctive fruity flavors'}, 
+                    { name: 'The Addict', description: 'Includes multiple bags of a large selection'}, 
+                    { name: 'The Spicy Selector', description: 'Cinnamon, cloves and other aromatics are highlighted in these teas'},
+                    { name: 'The Cozy Cuddler', description: 'Comforting, calming and soothing.'}
+                ],
             selectedPlan: null
+        }
+    },
+    computed: {
+        selectedPlanDescription() {
+            if (this.selectedPlan) {
+                const filteredPlans = this.plans.filter(plan => plan.name === this.selectedPlan)
+                return filteredPlans[0].description
+            }
         }
     },
     methods: {
