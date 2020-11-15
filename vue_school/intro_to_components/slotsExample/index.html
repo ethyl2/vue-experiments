@@ -10,29 +10,39 @@
 
 <body>
     <div id="app">
-        <h1>Vue.js Slots Example</h1>   
-        <todo-item>
-            <p>Learn more about Vue.</p>
-            <template v-slot:description>
-                <p>Vue is awesome; so much to learn!</p>
-            </template>
-            <template v-slot:button-text>Highlight</template>
-        </todo-item>
 
-        <todo-item>
-            <p>Learn more about slots.</p>
-            <template #description>
-                <p>Named slots are especially awesome!</p>
-            </template>
-            <template #button-text>Agree?</template>
-        </todo-item>
+        <page-layout>
+            <template #header-content>
+                <h1>Vue.js Slots Example With Todos</h1>
+            </template>  
+            <todo-item>
+                <p>Learn more about Vue.</p>
+                <template v-slot:description>
+                    <p>Vue is awesome; so much to learn!</p>
+                </template>
+                <template v-slot:button-text>Highlight</template>
+            </todo-item>
 
-        <todo-item>
-            <p>Eat a burrito.</p>
-            <template #description>
-                <p>It's time for dinner!</p>
+            <todo-item>
+                <p>Learn more about slots.</p>
+                <template #description>
+                    <p>Named slots are especially awesome!</p>
+                </template>
+                <template #button-text>Agree?</template>
+            </todo-item>
+
+            <todo-item>
+                <p>Eat a burrito.</p>
+                <template #description>
+                    <p>It's time for dinner!</p>
+                </template>
+            </todo-item>
+
+            <template #footer-content>
+                <p>© {{ new Date().getFullYear() }} Heather Nuffer</p>
             </template>
-        </todo-item>
+
+        </page-layout>
     </div>
 
 <script type="text/x-template" id="todo-item-template">
@@ -55,6 +65,19 @@
         </button>
     </div>
   </script>
+
+  <script type="text/x-template" id="page-layout-template">
+    <div>
+        <header>
+            <slot name="header-content">Welcome</slot>
+        </header>
+        <slot></slot>
+        <footer>
+            <slot name="footer-content">© {{ new Date().getFullYear() }} Heather Nuffer</slot>
+        </footer>
+    </div>
+</script>
+
 
   <script src="https://unpkg.com/vue"></script>
   <script src="app.js"></script>
