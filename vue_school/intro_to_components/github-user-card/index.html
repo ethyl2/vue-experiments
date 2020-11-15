@@ -1,0 +1,148 @@
+<html>
+
+<head>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css">
+</head>
+
+<body>
+
+  <div id="app"
+       class="ui container">
+    
+
+    <app-intro></app-intro>
+    <div class="main-card">
+        <github-user-card username="ethyl2"></github-user-card>
+    </div>
+    <github-user-followers></github-user-followers>
+
+</div>
+
+
+  <script type="text/x-template" id="github-user-card-template">
+    <div class="ui card" v-if="user">
+        <div class="image">
+          <!-- <img src="https://semantic-ui.com/images/avatar2/large/kristy.png"> -->
+          <img :src="user.avatar_url" :alt="`github user ${user.id}`" />
+        </div>
+        <div class="content">
+          <a class="header" :href="user.html_url" target="_blank">{{ user.name }}</a>
+          <div class="meta">
+            <span class="date">Joined in {{ yearJoined }}</span>
+          </div>
+          <div class="description">
+            {{ user.bio }}
+          </div>
+        </div>
+        <div class="extra content">
+          <a>
+            <i class="user icon"></i>
+            {{ user.followers }} Followers | Following {{ user.following }} 
+          </a>
+        </div>
+      </div>
+    </div>
+
+</script>
+
+<script type="text/x-template" id="app-intro-template">
+    <header class="header-content">
+        <h1>{{ appTitle }}</h1>
+        <h2>{{ appSubtitle }}</h2>
+    </header>
+    </script>
+
+    <script type="text/x-template" id="github-user-followers-template">
+        <div class="followers-collection" v-if="followers">
+            <h2>Meet My GitHub Friends</h2>
+            <div class="ui cards card-collection">
+                <github-user-card v-for="follower in followers" :key="`follower-${ follower.id }-card`" :username="follower.login"></github-user-card>
+            </div>
+        </div>
+    </script>
+
+  <!-- Import Vue.js and axios -->
+  <script src="https://unpkg.com/vue"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- Your JavaScript Code :) -->
+  <script>
+
+Vue.component('app-intro', {
+    template: "#app-intro-template",
+    data() {
+        return {
+        appTitle: 'GitHub Profiles',
+        appSubtitle: 'Meet Me'
+        }
+    }
+})
+
+Vue.component('github-user-card', {
+    template: '#github-user-card-template',
+    props: {
+        username: {
+            type: String,
+            default: 'ethyl2'
+        }
+    } ,
+    data() {
+        return {
+            user: null
+        }
+    },
+    created() {
+        this.fetchUser()
+    },
+    methods: {
+        async fetchUser() {
+            try {
+                const newUser = await axios.get(`https://api.github.com/users/${this.username}`)
+                this.user = newUser.data
+            }
+            catch (error) {
+                console.log(error)
+            }
+        }
+    },
+    computed: {
+        yearJoined() {
+            if (this.user) {
+                const joinedDate = new Date(this.user.created_at)
+                return joinedDate.getFullYear()
+            }
+        }
+    }
+})
+
+    Vue.component('github-user-followers', {
+        template: '#github-user-followers-template',
+        data() {
+            return {
+                followers: []
+            }
+        }, 
+        created() {
+            this.getFollowers()
+        },
+        methods: {
+            async getFollowers() {
+                try {
+                    const followersData = await axios.get('https://api.github.com/users/ethyl2/followers')
+                    this.followers = followersData.data
+                } catch (error) {
+                    console.log(error)
+                }
+            }
+        }
+    })
+
+    new Vue({
+      el: '#app'
+    })
+  </script>
+  <link rel="stylesheet" href="style.css">
+</body>
+
+</html> 

@@ -1,0 +1,30 @@
+.header-content {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.main-card {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.followers-collection {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3rem;
+}
+
+.card-collection {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+  align-items: stretch;
+  width: 100vw;
+  padding: 1.5rem;
+}
