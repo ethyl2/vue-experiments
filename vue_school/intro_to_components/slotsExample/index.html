@@ -26,6 +26,13 @@
             </template>
             <template #button-text>Agree?</template>
         </todo-item>
+
+        <todo-item>
+            <p>Eat a burrito.</p>
+            <template #description>
+                <p>It's time for dinner!</p>
+            </template>
+        </todo-item>
     </div>
 
 <script type="text/x-template" id="todo-item-template">
@@ -39,7 +46,13 @@
         <span style="font-style: italic">
             <slot name="description"></slot>
         </span>
-        <button type="button" @click="handleButtonClick" style="margin: 0 1em;"><slot name="button-text"></slot></button>
+        <button type="button" @click="handleButtonClick" style="margin: 0 1em;">
+            <slot name="button-text">
+                <span v-if="!isHighlighted" role="img" aria-label="Light Bulb">💡</span>
+                <span v-else role="img" aria-label="New Moon">🌑</span>
+
+            </slot>
+        </button>
     </div>
   </script>
 
@@ -55,7 +68,7 @@
         align-items: center; 
         width: 60vw; 
         justify-content: space-between; 
-        border-bottom: 1px solid black;"
+        border-bottom: 1px solid black;
     }
     .done {
       color: green;
