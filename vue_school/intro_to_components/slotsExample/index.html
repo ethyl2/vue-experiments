@@ -16,12 +16,20 @@
             <template v-slot:description>
                 <p>Vue is awesome; so much to learn!</p>
             </template>
+            <template v-slot:button-text>Highlight</template>
         </todo-item>
-        <todo-item><p>Learn more about slots.</p></todo-item>
+
+        <todo-item>
+            <p>Learn more about slots.</p>
+            <template #description>
+                <p>Named slots are especially awesome!</p>
+            </template>
+            <template #button-text>Agree?</template>
+        </todo-item>
     </div>
 
 <script type="text/x-template" id="todo-item-template">
-    <div style="display: flex; align-items: center; width: 40vw; justify-content: space-between; border-bottom: 1px solid teal;" >
+    <div class="todo-item" :class="[isHighlighted ? 'highlight': 'no-highlight']">
         <div style="display: flex; align-items: center;">
             <input type="checkbox" v-model="isCompleted">
              <span :class="{done: isCompleted}">
@@ -31,6 +39,7 @@
         <span style="font-style: italic">
             <slot name="description"></slot>
         </span>
+        <button type="button" @click="handleButtonClick" style="margin: 0 1em;"><slot name="button-text"></slot></button>
     </div>
   </script>
 
@@ -41,9 +50,23 @@
           font-family: Arial, Helvetica, sans-serif;
           padding: 1em;
       }
+    .todo-item {
+        display: flex; 
+        align-items: center; 
+        width: 60vw; 
+        justify-content: space-between; 
+        border-bottom: 1px solid black;"
+    }
     .done {
       color: green;
       text-decoration: line-through;
+    }
+    .highlight {
+        background: yellow;
+    }
+    .no-highlight {
+        background: #f5f5dc;
+
     }
   </style>
 </body>
