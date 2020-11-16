@@ -10,19 +10,24 @@
     <h1>Notification Center</h1>
     
     <notification-message message-type="info"></notification-message>
+    <notification-message message-type="warning"></notification-message>
+    <notification-message message-type="error"></notification-message>
+    <notification-message message-type="success">Congratulations!</notification-message>
   </div>
 
   <!-- Template for Notification Message -->
   <script type="text/x-template" id="notification-message-template">
     <!-- Notification Message Markup -->
     <!-- Types: info, warning, error, success -->
-    <div v-if="isShowing" class="ui message" :class="[messageType === 'error' ? 'error': 'info']">
+    <div v-if="isShowing" class="ui message" :class="messageType">
         <i class="close icon" @click="closeMessage"></i>
+        <slot>
         <div class="header">
           You are eligible for a reward
         </div>
         <p>Go to the <b>special offers</b> page to see now.</p>
       </div>
+    </slot>
   </script>
 
   <!-- Import Vue.js -->
