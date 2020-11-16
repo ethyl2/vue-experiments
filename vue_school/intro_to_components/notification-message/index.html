@@ -9,10 +9,10 @@
   <div id="app" class="ui container">
     <h1>Notification Center</h1>
     
-    <notification-message message-type="info"></notification-message>
-    <notification-message message-type="warning"></notification-message>
+    <notification-message message-type="info" header-text="More Information"></notification-message>
+    <notification-message message-type="warning" header-text="Warning"></notification-message>
     <notification-message message-type="error"></notification-message>
-    <notification-message message-type="success">Congratulations!</notification-message>
+    <notification-message message-type="success" header-text="Today's Your Special Day!">Congratulations!</notification-message>
   </div>
 
   <!-- Template for Notification Message -->
@@ -21,13 +21,15 @@
     <!-- Types: info, warning, error, success -->
     <div v-if="isShowing" class="ui message" :class="messageType">
         <i class="close icon" @click="closeMessage"></i>
-        <slot>
+        
         <div class="header">
-          You are eligible for a reward
+          {{ headerText }}
         </div>
+        <slot>
         <p>Go to the <b>special offers</b> page to see now.</p>
+        </slot>
       </div>
-    </slot>
+    
   </script>
 
   <!-- Import Vue.js -->
@@ -42,6 +44,10 @@
             messageType: {
                 type: String,
                 default: 'error'
+            },
+            headerText: {
+                type: String,
+                default: 'Error Details'
             }
         },
         data() {
