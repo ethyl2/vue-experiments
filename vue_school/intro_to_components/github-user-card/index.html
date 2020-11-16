@@ -66,55 +66,55 @@
   <script src="https://unpkg.com/vue"></script>
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
-  <!-- Your JavaScript Code :) -->
+  
   <script>
 
-Vue.component('app-intro', {
-    template: "#app-intro-template",
-    data() {
-        return {
-        appTitle: 'GitHub Profiles',
-        appSubtitle: 'Meet Me'
-        }
-    }
-})
-
-Vue.component('github-user-card', {
-    template: '#github-user-card-template',
-    props: {
-        username: {
-            type: String,
-            default: 'ethyl2'
-        }
-    } ,
-    data() {
-        return {
-            user: null
-        }
-    },
-    created() {
-        this.fetchUser()
-    },
-    methods: {
-        async fetchUser() {
-            try {
-                const newUser = await axios.get(`https://api.github.com/users/${this.username}`)
-                this.user = newUser.data
-            }
-            catch (error) {
-                console.log(error)
+    Vue.component('app-intro', {
+        template: "#app-intro-template",
+        data() {
+            return {
+            appTitle: 'GitHub Profiles',
+            appSubtitle: 'Meet Me'
             }
         }
-    },
-    computed: {
-        yearJoined() {
-            if (this.user) {
-                const joinedDate = new Date(this.user.created_at)
-                return joinedDate.getFullYear()
+    })
+        
+    Vue.component('github-user-card', {
+        template: '#github-user-card-template',
+        props: {
+            username: {
+                type: String,
+                default: 'ethyl2'
+            }
+        } ,
+        data() {
+            return {
+                user: null
+            }
+        },
+        created() {
+            this.fetchUser()
+        },
+        methods: {
+            async fetchUser() {
+                try {
+                    const newUser = await axios.get(`https://api.github.com/users/${this.username}`)
+                    this.user = newUser.data
+                }
+                catch (error) {
+                    console.log(error)
+                }
+            }
+        },
+        computed: {
+            yearJoined() {
+                if (this.user) {
+                    const joinedDate = new Date(this.user.created_at)
+                    return joinedDate.getFullYear()
+                }
             }
         }
-    }
-})
+    })
 
     Vue.component('github-user-followers', {
         template: '#github-user-followers-template',
