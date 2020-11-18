@@ -22,7 +22,7 @@
 
 .layout header,
 .layout footer {
-  background: #41b883;
+  background: #13d3c9;
   color: white;
   padding: 1rem;
   flex: 0 0 auto;

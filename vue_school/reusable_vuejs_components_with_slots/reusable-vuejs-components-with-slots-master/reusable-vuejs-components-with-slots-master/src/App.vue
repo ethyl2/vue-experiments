@@ -1,8 +1,13 @@
 <template>
   <div class="page">
-    <AppButton>Press Me</AppButton>
-    <AppButton>Like Me</AppButton>
-    <AppButton>Buy Me</AppButton>
+    <AppLayout>
+      <template #header>
+        <h1>Fun with Slots</h1>
+      </template>
+    <AppButton @click="handleClick">Press Me</AppButton>
+    <AppButton @click="handleClick"><AppIcon />Like Me</AppButton>
+    <AppButton @click="handleClick">Buy Me</AppButton>
+    <p v-if="message">{{ message }}</p>
 
     <select v-model="selected">
       <option 
@@ -23,18 +28,24 @@
         </AppUserCardsList>
       </template>
     </AppUserList>
+
+    </AppLayout>
   </div>
 </template>
 
 <script>
+import AppLayout from "@/components/AppLayout"
 import AppUserList from "@/components/AppUserList";
 import AppUserCardsList from "@/components/AppUserCardsList";
 import AppButton from "@/components/AppButton"
+import AppIcon from "@/components/AppIcon"
 export default {
   components: {
     AppUserList,
     AppUserCardsList,
-    AppButton
+    AppButton,
+    AppIcon,
+    AppLayout
   },
   data() {
     return {
@@ -44,7 +55,13 @@ export default {
         { value: 'last',  label: 'last name'},
         { value: 'full',  label: 'fullname'},
         { value: 'fullWithTitle',  label: 'fullname with title'},
-      ]
+      ],
+      message: ''
+    }
+  },
+  methods: {
+    handleClick() {
+      this.message = 'Thank you!'
     }
   }
 };

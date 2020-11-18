@@ -1,5 +1,7 @@
 # Reusable Vue.js Components with Slots
 
+API used: https://randomuser.me/
+
 [![](https://vueschool.io/media/13867ba07d6eacdf868c78a340784a52/scoped-slots-course-not-transparent.jpg)](https://vueschool.io/courses/reusable-vuejs-components-with-slots)
 
 This repository contains the example code for the [Reusable Vue.js Components with Slots](https://vueschool.io/courses/reusable-vuejs-components-with-slots) course.
@@ -17,30 +19,34 @@ Slots do not replace props. The two features have different purposes.
 - How to work with dynamic named components
 - How to compose components with reusable component patterns
 
-
 [Click here to watch the course]
 
 ---
 
 ## Project setup
+
 ```
 yarn install
 ```
 
 ### Compiles and hot-reloads for development
+
 ```
 yarn serve
 ```
 
 ### Compiles and minifies for production
+
 ```
 yarn build
 ```
 
 ### Lints and fixes files
+
 ```
 yarn lint
 ```
 
 ### Customize configuration
+
 See [Configuration Reference](https://cli.vuejs.org/config/).

@@ -5,7 +5,7 @@
         <div class="card">
           <img
             class="resposive"
-            :src="item.picture.large"
+            :src="item.picture.medium"
             :alt="item.name.first + ' ' + item.name.last"
           />
           <div class="card-body">

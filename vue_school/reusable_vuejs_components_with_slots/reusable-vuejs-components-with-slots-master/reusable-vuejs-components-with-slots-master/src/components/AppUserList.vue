@@ -14,9 +14,8 @@
           <slot name="listitem" :user="item">
             <div>
               <img
-                width="48"
-                height="48"
-                :src="item.picture.large"
+               
+                :src="item.picture.medium"
                 :alt="item.name.first + ' ' + item.name.last"
               />
               <div>
@@ -70,7 +69,7 @@ export default {
       this.data = undefined;
       try {
         setTimeout(async () => {
-          const response = await fetch("https://randomuser.me/api/?results=5");
+          const response = await fetch("https://randomuser.me/api/?results=5&inc=name,picture,email");
           const json = await response.json();
           this.state = "loaded";
           this.data = json;
