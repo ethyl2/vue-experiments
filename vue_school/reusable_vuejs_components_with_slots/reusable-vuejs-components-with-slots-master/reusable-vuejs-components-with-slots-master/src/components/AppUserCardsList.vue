@@ -1,11 +1,11 @@
 <template>
-  <ul class="userlist">
-    <li v-for="item in list" :key="item.email">
+  <div class="userlist">
+    <div v-for="item in list" :key="item.email">
       <slot name="listitem" :user="item">
         <div class="card">
           <img
-            class="resposive"
-            :src="item.picture.medium"
+            class="responsive"
+            :src="item.picture.large"
             :alt="item.name.first + ' ' + item.name.last"
           />
           <div class="card-body">
@@ -16,14 +16,14 @@
 
             <slot name="full" :text="`${item.name.first} ${item.name.last}`"></slot>
 
-            <slot name="fullWithTitle" :text="`${item.name.title} ${item.name.first} ${item.name.last}`"></slot>
+            <slot name="fullWithTitle" :text="`${item.name.title} ${item.name.first} ${item.name.last} `"></slot>
 
-            <slot name="secondrow" :item="item"></slot>
+            <slot name="secondrow" :item="item"> {{ item.email }} | {{ item.phone }}</slot>
           </div>
         </div>
       </slot>
-    </li>
-  </ul>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -37,12 +37,14 @@ export default {
 
 <style scoped>
 .userlist {
-  display: grid;
+  /* display: grid;
   gap: 1rem;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 1fr 1fr 1fr; */
+  display: flex;
+  flex-flow: column nowrap;
 }
 
-.resposive {
+.responsive {
   width: 100%;
 }
 
